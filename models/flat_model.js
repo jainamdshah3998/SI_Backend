@@ -14,6 +14,9 @@ var flat={
     },
     updateFlatById:function(id,secretaryPhoneNumber,item,callback){
         return db.query("update flat set numberOfFloor=?,flatName=? where secretaryPhoneNumber=? and flatName=?",[item.numberOfFloor,item.flatName,secretaryPhoneNumber,id],callback);
+    },
+    getFlatBySecretaryPhoneNumber:function(secretaryPhoneNumber,callback){
+        return db.query('select * from flat where secretaryPhoneNumber=?',[secretaryPhoneNumber],callback);
     }
 
 };

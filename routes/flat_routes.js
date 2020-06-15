@@ -2,6 +2,16 @@ var flat_model = require("../models/flat_model");
 var express = require("express");
 var router = express.Router();
 
+router.get("/:secretaryPhoneNumber",function(req,res,next){
+  flat_model.getFlatBySecretaryPhoneNumber(req.params.secretaryPhoneNumber,function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 router.get("/:id?/:secretaryPhoneNumber?", function(req, res, next) {
   if (req.params.id) {
     flat_model.getFlatById(req.params.id,req.params.secretaryPhoneNumber,function(err, rows) {
