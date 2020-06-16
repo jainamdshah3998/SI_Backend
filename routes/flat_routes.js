@@ -2,19 +2,11 @@ var flat_model = require("../models/flat_model");
 var express = require("express");
 var router = express.Router();
 
-router.get("/:secretaryPhoneNumber",function(req,res,next){
-  flat_model.getFlatBySecretaryPhoneNumber(req.params.secretaryPhoneNumber,function(err, rows) {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(rows);
-    }
-  });
-});
 
-router.get("/:id?/:secretaryPhoneNumber?", function(req, res, next) {
-  if (req.params.id) {
-    flat_model.getFlatById(req.params.id,req.params.secretaryPhoneNumber,function(err, rows) {
+
+router.get("/:flatName?/:secretaryPhoneNumber?", function(req, res, next) {
+  if (req.params.flatName) {
+    flat_model.getFlatById(req.params.flatName,req.params.secretaryPhoneNumber,function(err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -31,8 +23,8 @@ router.get("/:id?/:secretaryPhoneNumber?", function(req, res, next) {
     });
   }
 });
-router.delete("/:id/:secretaryPhoneNumber", function(req, res, next) {
-    flat_model.deleteFlat(req.params.id,req.params.secretaryPhoneNumber,function(err, rows) {
+router.delete("/:flatName/:secretaryPhoneNumber", function(req, res, next) {
+    flat_model.deleteFlat(req.params.flatName,req.params.secretaryPhoneNumber,function(err, rows) {
     if (err) {
       res.json(err);
     } else {
@@ -41,8 +33,8 @@ router.delete("/:id/:secretaryPhoneNumber", function(req, res, next) {
   });
 });
 
-router.put("/:id/:secretaryPhoneNumber", function(req, res, next) {
-    flat_model.updateFlatById(req.params.id,req.params.secretaryPhoneNumber,req.body, function(err, rows) {
+router.put("/:flatName/:secretaryPhoneNumber", function(req, res, next) {
+    flat_model.updateFlatById(req.params.flatName,req.params.secretaryPhoneNumber,req.body, function(err, rows) {
     if (err) {
       res.json(err);
     } else {
