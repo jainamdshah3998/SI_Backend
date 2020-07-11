@@ -4,7 +4,7 @@ var block={
         return db.query('select * from block',callback);
     },
     addBlock:function(item,callback){
-        return db.query("insert into block(blockNumber,flatName,secretaryPhoneNumber) values(?,?,?)",[item.blockNumber,item.flatName,item.secretaryPhoneNumber],callback);
+        return db.query("insert into block(blockNumber,flatName,secretaryPhoneNumber,floorNumber) values(?,?,?,?)",[item.blockNumber,item.flatName,item.secretaryPhoneNumber,item.floorNumber],callback);
     },
     deleteBlock:function(id,secretaryPhoneNumber,callback){
         return db.query("delete from block where flatName=? and secretaryPhoneNumber=?",[id,secretaryPhoneNumber],callback);
@@ -13,7 +13,7 @@ var block={
         return db.query("select * from block where flatName=? and secretaryPhoneNumber=?",[id,secretaryPhoneNumber],callback);
     },
     updateBlockById:function(id,secretaryPhoneNumber,item,callback){
-        return db.query("update block set blockNumber=? where secretaryPhoneNumber=? and flatName=?",[item.blockNumber,secretaryPhoneNumber,id],callback);
+        return db.query("update block set blockNumber=?,floorNumber=? where secretaryPhoneNumber=? and flatName=?",[item.blockNumber,item.floorNumber,secretaryPhoneNumber,id],callback);
     }
 
 };
