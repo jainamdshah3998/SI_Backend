@@ -21,8 +21,8 @@ router.get("/:id?/:secretaryPhoneNumber?", function(req, res, next) {
     });
   }
 });
-router.delete("/:id/:secretaryPhoneNumber", function(req, res, next) {
-    block_model.deleteBlock(req.params.id,req.params.secretaryPhoneNumber,function(err, rows) {
+router.delete("/:blockNumber/:id/:secretaryPhoneNumber", function(req, res, next) {
+    block_model.deleteBlock(req.params.blockNumber,req.params.id,req.params.secretaryPhoneNumber,function(err, rows) {
     if (err) {
       res.json(err);
     } else {
@@ -31,8 +31,8 @@ router.delete("/:id/:secretaryPhoneNumber", function(req, res, next) {
   });
 });
 
-router.put("/:id/:secretaryPhoneNumber", function(req, res, next) {
-    block_model.updateBlockById(req.params.id,req.params.secretaryPhoneNumber,req.body, function(err, rows) {
+router.put("/:blockNumber/:id/:secretaryPhoneNumber", function(req, res, next) {
+    block_model.updateBlockById(req.params.blockNumber,req.params.id,req.params.secretaryPhoneNumber,req.body, function(err, rows) {
     if (err) {
       res.json(err);
     } else {
