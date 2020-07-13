@@ -2,6 +2,18 @@ var users_model = require("../models/users_model");
 var express = require("express");
 var router = express.Router();
 
+
+router.get("/:username/:userType", function(req, res, next) {
+  users_model.loginUsingOTP(req.params.username,req.params.userType,function(err, rows) {
+  if (err) {
+    res.json(err);
+  } else {
+    res.json(rows);
+  }
+});
+});
+
+
 router.get("/:username/:password/:userType", function(req, res, next) {
   users_model.login(req.params.username,req.params.password,req.params.userType,function(err, rows) {
   if (err) {
