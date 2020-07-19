@@ -14,7 +14,17 @@ var userblock={
     },
     updateUserBlockById:function(blockNumber,flatName,secretaryPhoneNumber,item,callback){
         return db.query("update userblock set userPhoneNumber=? where blockNumber=? and flatName=? and secretaryPhoneNumber=?",[item.userPhoneNumber,blockNumber,flatName,secretaryPhoneNumber],callback);
-    }
+    },
+    getUserBlockOfParticularUser:function(userPhoneNumber,callback){
+        return db.query("select userblock.*,society.* from userblock join society on userblock.secretaryPhoneNumber=society.secretaryPhoneNumber where userPhoneNumber=? group by userblock.secretaryPhoneNumber",[userPhoneNumber],callback);
+    },
+    getUserbyUserPhoneNumberAndSecretaryPhoneNumber:function(userPhoneNumber,secretaryPhoneNumber,callback){
+        return db.query("SELECT * FROM userblock where userPhoneNumber=? and secretaryPhoneNumber=? group by flatName",[userPhoneNumber,secretaryPhoneNumber],callback)
+    },
+    getUserBlockNumbers:function(flatName,userPhoneNumber,secretaryPhoneNumber,callback){
+        return db.query("SELECT * FROM `userblock` WHERE flatName=? and userPhoneNumber=?and secretaryPhoneNumber=?",[flatName,userPhoneNumber,secretaryPhoneNumber],callback);
+    },
+    
 
 };
 module.exports=userblock;

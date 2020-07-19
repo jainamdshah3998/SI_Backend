@@ -16,7 +16,7 @@ let everydaycategory = require('./routes/everydaycategory_routes');
 let everyday = require('./routes/everyday_routes');
 let usertypename = require('./routes/usertype_name_routes');
 let flatSecretary = require('./routes/flat_routes2');
-
+let userblockroutes2 = require('./routes/userblock_routes2');
 
 
 var app = express();
@@ -43,6 +43,7 @@ app.use('/everydaycategory',everydaycategory);
 app.use('/everyday',everyday);
 app.use('/usertypename',usertypename);
 app.use('/flatsecretary',flatSecretary);
+app.use('/userblock2',userblockroutes2);
 
 
 // catch 404 and forward to error handler
